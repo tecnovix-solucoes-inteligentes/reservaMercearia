@@ -46,7 +46,7 @@ function App() {
         {/* Header */}
         <div className="text-center mb-10">
           <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3">
-            Reserva de Mesa
+            Reserva Mercearia Gourmet
           </h1>
           <p className="text-gray-600 text-lg">
             Complete o formulário para fazer sua reserva
@@ -63,7 +63,17 @@ function App() {
 
         {/* Footer */}
         <div className="mt-12 text-center text-sm text-gray-500">
-          <p>© 2025 Mercearia. Todos os direitos reservados.</p>
+          <p>
+            © {new Date().getFullYear()} Mercearia. Desenvolvido por{' '}
+            <a
+              href="https://tecnovix.com.br"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-700 underline"
+            >
+              Tecnovix
+            </a>
+          </p>
         </div>
       </div>
     </div>

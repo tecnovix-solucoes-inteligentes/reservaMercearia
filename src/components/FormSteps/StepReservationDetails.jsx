@@ -249,10 +249,7 @@ export function StepReservationDetails() {
 
     // Validate conditional fields for anniversary
     if (formData.tipoReserva === 'aniversario' && formData.reservaPainel) {
-      if (!formData.fotoPainel) {
-        setImageError('Por favor, envie uma foto para o painel')
-        return
-      }
+      // Image is now optional, only validate if orientation is missing
       if (!formData.orientacoesPainel) {
         return
       }
@@ -331,7 +328,7 @@ export function StepReservationDetails() {
               {formData.reservaPainel && (
                 <>
                   <div className="space-y-2">
-                    <Label>Foto para o Painel *</Label>
+                    <Label>Foto para o Painel (opcional)</Label>
                     <div className="border-2 border-dashed rounded-lg p-4">
                       {!imagePreview ? (
                         <div

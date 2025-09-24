@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import useReservationStore from './store/reservationStore'
 import { ProgressBar } from './components/Layout/ProgressBar'
 import { StepPersonalData } from './components/FormSteps/StepPersonalData'
-import { StepReservationType } from './components/FormSteps/StepReservationType'
 import { StepReservationDetails } from './components/FormSteps/StepReservationDetails'
 import { StepSummary } from './components/FormSteps/StepSummary'
 import { useFormPersistence } from './hooks/useFormPersistence'
@@ -33,10 +32,8 @@ function App() {
       case 1:
         return <StepPersonalData />
       case 2:
-        return <StepReservationType />
-      case 3:
         return <StepReservationDetails />
-      case 4:
+      case 3:
         return <StepSummary />
       default:
         return <StepPersonalData />
@@ -44,14 +41,14 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-8 px-4">
       <div className="container mx-auto max-w-4xl">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        <div className="text-center mb-10">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3">
             Reserva de Mesa
           </h1>
-          <p className="text-gray-600">
+          <p className="text-gray-600 text-lg">
             Complete o formulário para fazer sua reserva
           </p>
         </div>

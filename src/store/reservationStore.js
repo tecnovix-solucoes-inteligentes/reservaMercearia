@@ -108,19 +108,19 @@ const useReservationStore = create(
             )
 
           case 2:
+            // Combine validations from old steps 2 and 3
             if (!formData.tipoReserva) return false
 
+            // Check type-specific requirements
             if (formData.tipoReserva === 'aniversario' && formData.reservaPainel) {
-              return !!(formData.fotoPainel && formData.orientacoesPainel)
+              if (!formData.fotoPainel || !formData.orientacoesPainel) return false
             }
 
             if (formData.tipoReserva === 'confraternizacao') {
-              return !!(formData.tipoCardapio && formData.orientacoesCompra)
+              if (!formData.tipoCardapio || !formData.orientacoesCompra) return false
             }
 
-            return true
-
-          case 3:
+            // Check reservation details
             return !!(
               formData.quantidadePessoas > 0 &&
               formData.dataReserva &&

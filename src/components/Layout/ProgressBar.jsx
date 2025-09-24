@@ -5,9 +5,8 @@ import { Check } from 'lucide-react'
 
 const steps = [
   { number: 1, label: 'Dados Pessoais' },
-  { number: 2, label: 'Tipo de Reserva' },
-  { number: 3, label: 'Detalhes' },
-  { number: 4, label: 'Confirmação' },
+  { number: 2, label: 'Detalhes da Reserva' },
+  { number: 3, label: 'Confirmação' },
 ]
 
 export function ProgressBar() {
@@ -16,10 +15,10 @@ export function ProgressBar() {
   return (
     <div className="w-full max-w-2xl mx-auto mb-8">
       <div className="relative">
-        {/* Progress line */}
-        <div className="absolute top-5 left-0 right-0 h-0.5 bg-gray-200">
+        {/* Progress line - positioned between first and last step */}
+        <div className="absolute top-5 left-5 right-5 h-1 bg-gray-200 rounded-full">
           <div
-            className="h-full bg-primary transition-all duration-300"
+            className="h-full bg-blue-600 rounded-full transition-all duration-500 ease-out"
             style={{
               width: `${((currentStep - 1) / (steps.length - 1)) * 100}%`,
             }}
@@ -39,12 +38,12 @@ export function ProgressBar() {
               >
                 <div
                   className={cn(
-                    'w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium transition-all',
+                    'w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-300 shadow-sm',
                     isCompleted
-                      ? 'bg-primary text-white'
+                      ? 'bg-green-500 text-white shadow-green-200'
                       : isActive
-                      ? 'bg-primary text-white ring-4 ring-primary/20'
-                      : 'bg-gray-200 text-gray-600'
+                      ? 'bg-blue-600 text-white ring-4 ring-blue-200 shadow-blue-200'
+                      : 'bg-white border-2 border-gray-300 text-gray-400'
                   )}
                 >
                   {isCompleted ? (
@@ -56,7 +55,7 @@ export function ProgressBar() {
                 <span
                   className={cn(
                     'mt-2 text-xs font-medium text-center hidden sm:block',
-                    isActive ? 'text-primary' : 'text-gray-500'
+                    isActive ? 'text-blue-600 font-semibold' : isCompleted ? 'text-green-600' : 'text-gray-500'
                   )}
                 >
                   {step.label}
@@ -69,10 +68,10 @@ export function ProgressBar() {
 
       {/* Mobile step label */}
       <div className="mt-4 text-center sm:hidden">
-        <p className="text-sm font-medium text-primary">
+        <p className="text-sm font-semibold text-blue-600">
           Passo {currentStep} de {steps.length}
         </p>
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-gray-600">
           {steps[currentStep - 1].label}
         </p>
       </div>

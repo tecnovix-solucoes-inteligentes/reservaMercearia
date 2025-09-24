@@ -462,6 +462,7 @@ export function StepReservationDetails() {
                 id="dataReserva"
                 type="date"
                 min={today}
+                placeholder="DD/MM/AAAA"
                 {...register('dataReserva')}
               />
               {errors.dataReserva && (

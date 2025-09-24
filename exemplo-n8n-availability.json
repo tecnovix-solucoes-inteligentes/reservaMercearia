@@ -1,0 +1,34 @@
+{
+  "defaultTimeSlots": [
+    "18:00",
+    "18:30",
+    "19:00",
+    "19:30",
+    "20:00",
+    "20:30"
+  ],
+  "blockedDates": [
+    "2025-01-01",
+    "2025-12-25",
+    "2025-12-31"
+  ],
+  "exceptions": [
+    {
+      "date": "2025-05-11",
+      "timeSlots": ["11:00", "11:30", "12:00", "12:30"],
+      "message": "Horário especial para o Dia das Mães (domingo)"
+    },
+    {
+      "date": "2025-12-01",
+      "timeSlots": ["14:00", "14:30", "15:00", "15:30"],
+      "message": "Horário especial de domingo excepcionalmente aberto"
+    }
+  ],
+  "blockedWeekdays": [0],
+  "message": "",
+  "_comentarios": {
+    "blockedWeekdays": "0=domingo, 1=segunda, 2=terça, 3=quarta, 4=quinta, 5=sexta, 6=sábado",
+    "exceptions": "As exceções têm prioridade sobre blockedWeekdays. Use para abrir em dias normalmente fechados ou mudar horários",
+    "blockedDates": "Datas específicas que estarão sempre fechadas, independente do dia da semana"
+  }
+}

@@ -437,11 +437,6 @@ export function StepReservationDetails() {
                 </div>
                 {panelAvailable === false && (
                   <div className="mt-3 space-y-2">
-                    {panelMessage && (
-                      <p className="text-xs text-red-600">
-                        {panelMessage}
-                      </p>
-                    )}
                     <Button
                       type="button"
                       variant="destructive"

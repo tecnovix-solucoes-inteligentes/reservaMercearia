@@ -15,14 +15,28 @@ export function useN8N() {
     setSubmitSuccess,
   } = useReservationStore()
 
-  const checkPanelAvailabilityHandler = useCallback(async (date) => {
+  const checkPanelAvailabilityHandler = useCallback(async (date, quantidadePessoas = 0) => {
     setCheckingPanelAvailability(true)
     setPanelAvailabilityError(null)
 
     try {
       const result = await checkPanelAvailability(date)
-      setPanelAvailability(result)
-      return result
+      
+      // Validação adicional: painel só disponível para 10+ pessoas
+      const isAvailable = result.available && quantidadePessoas >= 10
+      
+      const finalResult = {
+        ...result,
+        available: isAvailable,
+        message: isAvailable 
+          ? result.message 
+          : quantidadePessoas < 10 
+            ? 'Painel disponível apenas para reservas com 10 ou mais pessoas'
+            : result.message
+      }
+      
+      setPanelAvailability(finalResult)
+      return finalResult
     } catch (err) {
       const errorMessage = err.message || 'Erro ao verificar disponibilidade'
       setPanelAvailabilityError(errorMessage)

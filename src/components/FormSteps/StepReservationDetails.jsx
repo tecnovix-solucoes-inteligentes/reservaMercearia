@@ -510,7 +510,7 @@ export function StepReservationDetails() {
                       Remover Reserva do Painel
                     </Button>
                     <p className="text-xs text-gray-400 text-center">
-                      Remova a reserva do painel para continuar com o agendamento
+                      Remova a reserva do painel ou altere os itens solicitados para continuar com o agendamento
                     </p>
                   </div>
                 )}

@@ -31,7 +31,7 @@ export function useN8N() {
         if (quantidadePessoas < 10) {
           message = 'Painel disponível apenas para reservas com 10 ou mais pessoas'
         } else if (!isPanelAllowedLocation(localDesejado)) {
-          message = 'Painel disponível apenas para: Deck lateral (fundo), Deck lateral (próximo ao palco) ou Área externa (frente)'
+          message = 'Disponível em: Deck lateral (fundo), Deck lateral (próximo ao palco) ou Área externa (frente)'
         } else {
           message = result.message
         }

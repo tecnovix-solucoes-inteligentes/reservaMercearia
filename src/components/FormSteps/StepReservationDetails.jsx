@@ -415,50 +415,6 @@ export function StepReservationDetails() {
             </div>
           </div>
 
-          {/* Panel availability status */}
-          {formData.tipoReserva === 'aniversario' &&
-            formData.reservaPainel &&
-            watchedDate && (
-              <div className="p-3 rounded-lg bg-gray-800 border border-custom">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-white">
-                    Disponibilidade do Painel
-                  </span>
-                  {checkingPanelAvailability ? (
-                    <Badge variant="secondary" className="flex items-center gap-1">
-                      <Loader2 className="h-3 w-3 animate-spin" />
-                      Verificando...
-                    </Badge>
-                  ) : panelAvailable === true ? (
-                    <Badge variant="success" className="flex items-center gap-1">
-                      <CheckCircle className="h-3 w-3" />
-                      {panelMessage || `Disponível (${2 - panelSlotsUsed} vaga${2 - panelSlotsUsed !== 1 ? 's' : ''})`}
-                    </Badge>
-                  ) : panelAvailable === false ? (
-                    <Badge variant="destructive" className="flex items-center gap-1">
-                      <XCircle className="h-3 w-3" />
-                      {panelMessage || 'Indisponível (Limite atingido)'}
-                    </Badge>
-                  ) : null}
-                </div>
-                {panelAvailable === false && (
-                  <div className="mt-3 space-y-2">
-                    <Button
-                      type="button"
-                      variant="destructive"
-                      size="sm"
-                      onClick={() => updateFormData({ reservaPainel: false })}
-                      className="w-full"
-                    >
-                      Remover Reserva do Painel
-                    </Button>
-                    <p className="text-xs text-gray-400 text-center">
-                      Remova a reserva do painel para continuar com o agendamento
-                    </p>
-                  </div>
-                )}
-              </div>
-            )}
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
@@ -515,6 +471,51 @@ export function StepReservationDetails() {
               )}
             </div>
           </div>
+
+          {/* Panel availability status */}
+          {formData.tipoReserva === 'aniversario' &&
+            formData.reservaPainel &&
+            watchedDate && (
+              <div className="p-3 rounded-lg bg-gray-800 border border-custom">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-white">
+                    Disponibilidade do Painel
+                  </span>
+                  {checkingPanelAvailability ? (
+                    <Badge variant="secondary" className="flex items-center gap-1">
+                      <Loader2 className="h-3 w-3 animate-spin" />
+                      Verificando...
+                    </Badge>
+                  ) : panelAvailable === true ? (
+                    <Badge variant="success" className="flex items-center gap-1">
+                      <CheckCircle className="h-3 w-3" />
+                      {panelMessage || `Disponível (${2 - panelSlotsUsed} vaga${2 - panelSlotsUsed !== 1 ? 's' : ''})`}
+                    </Badge>
+                  ) : panelAvailable === false ? (
+                    <Badge variant="destructive" className="flex items-center gap-1">
+                      <XCircle className="h-3 w-3" />
+                      {panelMessage || 'Indisponível (Limite atingido)'}
+                    </Badge>
+                  ) : null}
+                </div>
+                {panelAvailable === false && (
+                  <div className="mt-3 space-y-2">
+                    <Button
+                      type="button"
+                      variant="destructive"
+                      size="sm"
+                      onClick={() => updateFormData({ reservaPainel: false })}
+                      className="w-full"
+                    >
+                      Remover Reserva do Painel
+                    </Button>
+                    <p className="text-xs text-gray-400 text-center">
+                      Remova a reserva do painel para continuar com o agendamento
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
 
           <div className="space-y-2">
             <Label htmlFor="observacoes">Observações (opcional)</Label>

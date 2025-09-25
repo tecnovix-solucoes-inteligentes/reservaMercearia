@@ -12,6 +12,16 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui
 export function StepPersonalData() {
   const { formData, updateFormData, nextStep } = useReservationStore()
 
+  // Função para converter data ISO para formato brasileiro
+  const formatDateToBR = (isoDate) => {
+    if (!isoDate) return ''
+    const date = new Date(isoDate)
+    const day = String(date.getDate()).padStart(2, '0')
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    const year = date.getFullYear()
+    return `${day}/${month}/${year}`
+  }
+
   const {
     register,
     handleSubmit,
@@ -89,11 +99,21 @@ export function StepPersonalData() {
 
           <div className="space-y-2">
             <Label htmlFor="dataNascimento">Data de Nascimento *</Label>
-            <Input
-              id="dataNascimento"
-              type="date"
-              {...register('dataNascimento')}
-              max={new Date().toISOString().split('T')[0]}
+            <IMaskInput
+              mask="00/00/0000"
+              placeholder="DD/MM/AAAA"
+              value={formatDateToBR(formData.dataNascimento)}
+              onAccept={(value) => {
+                // Converter DD/MM/AAAA para AAAA-MM-DD para validação
+                if (value.length === 10) {
+                  const [day, month, year] = value.split('/')
+                  const isoDate = `${year}-${month}-${day}`
+                  setValue('dataNascimento', isoDate)
+                } else {
+                  setValue('dataNascimento', '')
+                }
+              }}
+              className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-custom-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             />
             {errors.dataNascimento && (
               <p className="text-sm text-red-500">{errors.dataNascimento.message}</p>

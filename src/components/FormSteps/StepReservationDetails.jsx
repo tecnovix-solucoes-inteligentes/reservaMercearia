@@ -110,8 +110,8 @@ export function StepReservationDetails() {
         return
       }
 
-      // Check if it's same day reservation after 12:00 PM
-      if (date.getTime() === today.getTime() && now.getHours() >= 12) {
+      // Check if it's same day reservation after 6:00 PM
+      if (date.getTime() === today.getTime() && now.getHours() >= 18) {
         setDateAvailable(false)
         setAvailabilityMessage('As reservas para hoje já foram encerradas')
         setAvailableTimeSlots([])

@@ -477,22 +477,22 @@ export function StepReservationDetails() {
             formData.reservaPainel &&
             watchedDate && (
               <div className="p-3 rounded-lg bg-gray-800 border border-custom">
-                <div className="flex items-center justify-between">
+                <div className="space-y-2">
                   <span className="text-sm font-medium text-white">
                     Disponibilidade do Painel
                   </span>
                   {checkingPanelAvailability ? (
-                    <Badge variant="secondary" className="flex items-center gap-1">
+                    <Badge variant="secondary" className="flex items-center gap-1 w-fit">
                       <Loader2 className="h-3 w-3 animate-spin" />
                       Verificando...
                     </Badge>
                   ) : panelAvailable === true ? (
-                    <Badge variant="success" className="flex items-center gap-1">
+                    <Badge variant="success" className="flex items-center gap-1 w-fit">
                       <CheckCircle className="h-3 w-3" />
                       {panelMessage || `Disponível (${2 - panelSlotsUsed} vaga${2 - panelSlotsUsed !== 1 ? 's' : ''})`}
                     </Badge>
                   ) : panelAvailable === false ? (
-                    <Badge variant="destructive" className="flex items-center gap-1">
+                    <Badge variant="destructive" className="flex items-center gap-1 w-fit">
                       <XCircle className="h-3 w-3" />
                       {panelMessage || 'Indisponível (Limite atingido)'}
                     </Badge>

@@ -46,7 +46,7 @@ export const reservationDetailsSchema = z.object({
     return reservationDate >= today
   }, 'Data não pode ser no passado'),
   horarioDesejado: z.string().regex(/^\d{2}:\d{2}$/, 'Horário inválido'),
-  localDesejado: z.enum(['', 'proximo_palco', 'proximo_play', 'area_externa'], {
+  localDesejado: z.enum(['', 'proximo_play_salao', 'proximo_palco_salao', 'deck_lateral_fundo', 'deck_lateral_palco', 'area_externa_frente'], {
     errorMap: () => ({ message: 'Por favor, selecione um local válido' }),
   }).refine((val) => val !== '', {
     message: 'Por favor, selecione um local válido'

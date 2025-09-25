@@ -40,9 +40,13 @@ export const reservationDetailsSchema = z.object({
     .min(1, 'Mínimo 1 pessoa')
     .max(50, 'Máximo 50 pessoas'),
   dataReserva: z.string().refine((date) => {
-    const reservationDate = new Date(date)
+    // Parse date string directly to local timezone
+    const [year, month, day] = date.split('-').map(Number)
+    const reservationDate = new Date(year, month - 1, day)
+    
     const today = new Date()
     today.setHours(0, 0, 0, 0)
+    
     return reservationDate >= today
   }, 'Data não pode ser no passado'),
   horarioDesejado: z.string().regex(/^\d{2}:\d{2}$/, 'Horário inválido'),

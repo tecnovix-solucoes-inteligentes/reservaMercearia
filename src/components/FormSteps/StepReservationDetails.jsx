@@ -58,6 +58,7 @@ export function StepReservationDetails() {
   })
 
   const watchedDate = watch('dataReserva')
+  const watchedQuantidadePessoas = watch('quantidadePessoas')
 
   // Handle type change
   const handleTypeChange = (type) => {
@@ -131,7 +132,7 @@ export function StepReservationDetails() {
           if (formData.tipoReserva === 'aniversario' && formData.reservaPainel) {
             clearTimeout(dateDebounce)
             const timeout = setTimeout(async () => {
-              const result = await checkPanelAvailability(watchedDate, formData.quantidadePessoas)
+              const result = await checkPanelAvailability(watchedDate, watchedQuantidadePessoas)
               if (result) {
                 setPanelMessage(result.message || '')
               }
@@ -172,7 +173,7 @@ export function StepReservationDetails() {
       if (formData.tipoReserva === 'aniversario' && formData.reservaPainel) {
         clearTimeout(dateDebounce)
         const timeout = setTimeout(async () => {
-          const result = await checkPanelAvailability(watchedDate, formData.quantidadePessoas)
+          const result = await checkPanelAvailability(watchedDate, watchedQuantidadePessoas)
           if (result) {
             setPanelMessage(result.message || '')
           }
@@ -181,7 +182,7 @@ export function StepReservationDetails() {
         return () => clearTimeout(timeout)
       }
     }
-  }, [watchedDate, availabilityConfig, formData.tipoReserva, formData.reservaPainel, formData.quantidadePessoas])
+  }, [watchedDate, watchedQuantidadePessoas, availabilityConfig, formData.tipoReserva, formData.reservaPainel])
 
   const onSubmit = (data) => {
     // Validate reservation type
@@ -196,7 +197,7 @@ export function StepReservationDetails() {
         return
       }
       // Additional validation: panel requires minimum 10 people
-      if (formData.quantidadePessoas < 10) {
+      if (watchedQuantidadePessoas < 10) {
         return
       }
     }

@@ -118,24 +118,6 @@ export function StepSummary() {
                 <div>
                   <Badge variant="secondary">Painel de Aniversário Reservado</Badge>
                 </div>
-                {formData.fotoPainelPreview && (
-                  <div>
-                    <span className="text-sm text-gray-300">Foto do Painel:</span>
-                    <img
-                      src={formData.fotoPainelPreview}
-                      alt="Foto do Painel"
-                      className="mt-2 max-h-32 rounded"
-                    />
-                  </div>
-                )}
-                {formData.orientacoesPainel && (
-                  <div>
-                    <span className="text-sm text-gray-300">
-                      Orientações do Painel:
-                    </span>
-                    <p className="font-medium text-white">{formData.orientacoesPainel}</p>
-                  </div>
-                )}
               </>
             )}
 
@@ -146,10 +128,6 @@ export function StepSummary() {
                   <p className="font-medium text-white">
                     {getMenuTypeLabel(formData.tipoCardapio)}
                   </p>
-                </div>
-                <div>
-                  <span className="text-sm text-gray-300">Orientações/Detalhes da Confraternização:</span>
-                  <p className="font-medium text-white">{formData.orientacoesCompra}</p>
                 </div>
               </>
             )}

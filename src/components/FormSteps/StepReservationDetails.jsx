@@ -6,8 +6,6 @@ import {
   locationOptions,
   reservationTypes,
   menuTypes,
-  fileToBase64,
-  compressImage
 } from '../../lib/utils'
 import useReservationStore from '../../store/reservationStore'
 import { useN8N } from '../../hooks/useN8N'
@@ -19,7 +17,7 @@ import { Select } from '../ui/select'
 import { Textarea } from '../ui/textarea'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
 import { Badge } from '../ui/badge'
-import { CheckCircle, XCircle, Loader2, AlertCircle, Upload, X } from 'lucide-react'
+import { CheckCircle, XCircle, Loader2, AlertCircle } from 'lucide-react'
 
 export function StepReservationDetails() {
   const {
@@ -31,8 +29,6 @@ export function StepReservationDetails() {
     panelAvailable,
     panelSlotsUsed,
     panelAvailabilityError,
-    setFotoPainel,
-    clearFotoPainel,
   } = useReservationStore()
 
   const { checkPanelAvailability } = useN8N()
@@ -44,10 +40,6 @@ export function StepReservationDetails() {
   const [availabilityMessage, setAvailabilityMessage] = useState('')
   const [availabilityConfig, setAvailabilityConfig] = useState(null)
 
-  // Image upload states
-  const [imagePreview, setImagePreview] = useState(formData.fotoPainelPreview)
-  const [imageError, setImageError] = useState('')
-  const fileInputRef = useRef(null)
 
   const {
     register,
@@ -73,60 +65,10 @@ export function StepReservationDetails() {
       tipoReserva: type,
       // Reset conditional fields when changing type
       reservaPainel: false,
-      fotoPainel: null,
-      fotoPainelPreview: null,
-      orientacoesPainel: '',
       tipoCardapio: '',
-      orientacoesCompra: '',
     })
-    setImagePreview(null)
-    setImageError('')
   }
 
-  // Handle image upload
-  const handleImageUpload = async (e) => {
-    const file = e.target.files[0]
-    if (!file) return
-
-    setImageError('')
-
-    // Validate file type
-    if (!['image/jpeg', 'image/jpg', 'image/png'].includes(file.type)) {
-      setImageError('Por favor, envie apenas imagens JPG ou PNG')
-      return
-    }
-
-    // Validate file size (5MB)
-    const maxSize = 5 * 1024 * 1024
-    if (file.size > maxSize) {
-      setImageError('A imagem deve ter no máximo 5MB')
-      return
-    }
-
-    try {
-      // Compress if needed
-      const processedFile = await compressImage(file, 2)
-
-      // Convert to base64
-      const base64 = await fileToBase64(processedFile)
-
-      // Create preview
-      const preview = URL.createObjectURL(processedFile)
-      setImagePreview(preview)
-      setFotoPainel(base64, preview)
-    } catch (error) {
-      setImageError('Erro ao processar imagem. Tente novamente.')
-      console.error('Error processing image:', error)
-    }
-  }
-
-  const removeImage = () => {
-    setImagePreview(null)
-    clearFotoPainel()
-    if (fileInputRef.current) {
-      fileInputRef.current.value = ''
-    }
-  }
 
   // Load availability configuration on mount
   useEffect(() => {
@@ -249,10 +191,6 @@ export function StepReservationDetails() {
 
     // Validate conditional fields for anniversary
     if (formData.tipoReserva === 'aniversario' && formData.reservaPainel) {
-      // Image is now optional, only validate if orientation is missing
-      if (!formData.orientacoesPainel) {
-        return
-      }
       // If panel not available, prevent submission
       if (panelAvailable === false) {
         return
@@ -261,7 +199,7 @@ export function StepReservationDetails() {
 
     // Validate conditional fields for party
     if (formData.tipoReserva === 'confraternizacao') {
-      if (!formData.tipoCardapio || !formData.orientacoesCompra) {
+      if (!formData.tipoCardapio) {
         return
       }
     }
@@ -327,67 +265,51 @@ export function StepReservationDetails() {
 
               {formData.reservaPainel && (
                 <>
-                  <div className="space-y-2">
-                    <Label>Foto para o Painel (opcional)</Label>
-                    <div className="border-2 border-dashed rounded-lg p-4">
-                      {!imagePreview ? (
-                        <div
-                          className="flex flex-col items-center justify-center cursor-pointer"
-                          onClick={() => fileInputRef.current?.click()}
-                        >
-                          <Upload className="h-10 w-10 text-gray-400 mb-2" />
-                          <p className="text-sm text-gray-300">
-                            Clique para enviar uma foto
-                          </p>
-                          <p className="text-xs text-gray-400 mt-1">
-                            JPG ou PNG, máx. 5MB
-                          </p>
-                        </div>
-                      ) : (
-                        <div className="relative">
-                          <img
-                            src={imagePreview}
-                            alt="Preview"
-                            className="max-h-48 mx-auto rounded"
-                          />
-                          <button
-                            type="button"
-                            onClick={removeImage}
-                            className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full hover:bg-red-600"
-                          >
-                            <X className="h-4 w-4" />
-                          </button>
-                        </div>
-                      )}
-                      <input
-                        ref={fileInputRef}
-                        type="file"
-                        accept="image/jpeg,image/jpg,image/png"
-                        onChange={handleImageUpload}
-                        className="hidden"
-                      />
+                  <div className="space-y-3">
+                    <Label className="text-white font-semibold">Modelo do Painel</Label>
+                    <div className="p-4 bg-gray-700 rounded-lg border border-gray-600">
+                      <div className="flex flex-col items-center space-y-3">
+                        <img
+                          src="/assets/painel.webp"
+                          alt="Modelo do Painel de Aniversário"
+                          className="max-h-64 mx-auto rounded-lg shadow-lg"
+                        />
+                        <p className="text-sm text-gray-300 text-center">
+                          Este é o modelo do painel de aniversário que será disponibilizado gratuitamente
+                        </p>
+                      </div>
                     </div>
-                    {imageError && (
-                      <p className="text-sm text-red-500">{imageError}</p>
-                    )}
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="orientacoesPainel">
-                      Orientações sobre o Painel *
+                  <div className="space-y-3">
+                    <Label className="text-white font-semibold">
+                      Orientações
                     </Label>
-                    <Textarea
-                      id="orientacoesPainel"
-                      placeholder="Ex: Nome a ser escrito, mensagem especial, etc."
-                      value={formData.orientacoesPainel || ''}
-                      onChange={(e) =>
-                        updateFormData({ orientacoesPainel: e.target.value })
-                      }
-                      maxLength={500}
-                    />
-                    <p className="text-xs text-gray-400">
-                      {(formData.orientacoesPainel || '').length}/500 caracteres
-                    </p>
+                    <div className="p-4 bg-gray-700 rounded-lg border border-gray-600">
+                      <div className="space-y-3 text-sm">
+                        <div>
+                          <p className="text-orange-custom-600 font-semibold mb-2">
+                            🎉 Orientações do Painel de Aniversário
+                          </p>
+                          <ul className="space-y-1 text-gray-200 ml-4">
+                            <li>• Painel gratuito: inclui apenas a estrutura (não acompanha decoração).</li>
+                            <li>• O painel só pode ser colocado na área externa.</li>
+                            <li>• Válido para reservas a partir de 10 pessoas.</li>
+                          </ul>
+                        </div>
+                        <div>
+                          <p className="text-orange-custom-600 font-semibold mb-2">
+                            ✨ Arco de balões (opcional)
+                          </p>
+                          <ul className="space-y-1 text-gray-200 ml-4">
+                            <li>• R$ 80 com balões inclusos (até 2 cores).</li>
+                            <li>• R$ 40 caso o cliente traga os balões.</li>
+                            <li>• Solicitação com mínimo de 2 dias de antecedência e pagamento via Pix.</li>
+                            <li>• A solicitação deve ser confirmada previamente via WhatsApp.</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </>
               )}
@@ -419,22 +341,21 @@ export function StepReservationDetails() {
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="orientacoesCompra">
-                  Orientações/Detalhes da Confraternização *
-                </Label>
-                <Textarea
-                  id="orientacoesCompra"
-                  placeholder="Descreva suas preferências e necessidades especiais"
-                  value={formData.orientacoesCompra || ''}
-                  onChange={(e) =>
-                    updateFormData({ orientacoesCompra: e.target.value })
-                  }
-                  maxLength={500}
-                />
-                <p className="text-xs text-gray-400">
-                  {(formData.orientacoesCompra || '').length}/500 caracteres
-                </p>
+              <div className="space-y-3">
+                <div className="p-4 bg-gray-700 rounded-lg border border-gray-600">
+                  <div className="space-y-3 text-sm">
+                    <div>
+                      <p className="text-orange-custom-600 font-semibold mb-2">
+                        Orientações:
+                      </p>
+                      <ul className="space-y-2 text-gray-200">
+                        <li>• Nosso site nós temos todas as orientações sobre a confraternização de empresas.</li>
+                        <li>• Link: <span className="text-orange-custom-400">[Link será adicionado]</span></li>
+                        <li>• Dúvidas mandar via WhatsApp.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           )}

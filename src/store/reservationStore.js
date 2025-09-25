@@ -13,11 +13,7 @@ const initialState = {
     // Step 2: Tipo de Reserva
     tipoReserva: '',
     reservaPainel: false,
-    fotoPainel: null,
-    fotoPainelPreview: null,
-    orientacoesPainel: '',
     tipoCardapio: '',
-    orientacoesCompra: '',
 
     // Step 3: Detalhes da Reserva
     quantidadePessoas: 1,
@@ -77,22 +73,6 @@ const useReservationStore = create(
       setSubmitError: (error) => set({ submitError: error, submitSuccess: false }),
       setSubmitSuccess: () => set({ submitSuccess: true, submitError: null }),
 
-      // Image upload actions
-      setFotoPainel: (base64, preview) => set((state) => ({
-        formData: {
-          ...state.formData,
-          fotoPainel: base64,
-          fotoPainelPreview: preview,
-        }
-      })),
-
-      clearFotoPainel: () => set((state) => ({
-        formData: {
-          ...state.formData,
-          fotoPainel: null,
-          fotoPainelPreview: null,
-        }
-      })),
 
       // Validation helpers
       isStepValid: (step) => {
@@ -112,12 +92,8 @@ const useReservationStore = create(
             if (!formData.tipoReserva) return false
 
             // Check type-specific requirements
-            if (formData.tipoReserva === 'aniversario' && formData.reservaPainel) {
-              if (!formData.fotoPainel || !formData.orientacoesPainel) return false
-            }
-
             if (formData.tipoReserva === 'confraternizacao') {
-              if (!formData.tipoCardapio || !formData.orientacoesCompra) return false
+              if (!formData.tipoCardapio) return false
             }
 
             // Check reservation details
@@ -149,10 +125,7 @@ const useReservationStore = create(
           tipoReserva: {
             tipo: formData.tipoReserva,
             reservaPainel: formData.reservaPainel || false,
-            fotoPainel: formData.fotoPainel || null,
-            orientacoesPainel: formData.orientacoesPainel || null,
             tipoCardapio: formData.tipoCardapio || null,
-            orientacoesCompra: formData.orientacoesCompra || null,
           },
           detalhesReserva: {
             quantidadePessoas: formData.quantidadePessoas,

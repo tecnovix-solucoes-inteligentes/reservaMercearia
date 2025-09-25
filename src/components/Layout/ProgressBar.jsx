@@ -38,12 +38,12 @@ export function ProgressBar() {
               >
                 <div
                   className={cn(
-                    'w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-300 shadow-sm',
+                    'rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-300 shadow-sm',
                     isCompleted
-                      ? 'bg-green-500 text-white shadow-green-200'
+                      ? 'w-12 h-12 bg-green-500 text-white shadow-green-200'
                       : isActive
-                      ? 'bg-orange-custom-600 text-white ring-4 ring-orange-custom-200 shadow-orange-custom-200'
-                      : 'bg-white border-2 border-gray-300 text-gray-400'
+                      ? 'w-10 h-10 bg-orange-custom-600 text-white ring-4 ring-orange-custom-200 shadow-orange-custom-200'
+                      : 'w-10 h-10 bg-white border-2 border-gray-300 text-gray-400'
                   )}
                 >
                   {isCompleted ? (
@@ -55,7 +55,7 @@ export function ProgressBar() {
                 <span
                   className={cn(
                     'mt-2 text-xs font-medium text-center hidden sm:block',
-                    isActive ? 'text-orange-custom-600 font-semibold' : isCompleted ? 'text-green-600' : 'text-gray-500'
+                    isActive ? 'text-orange-custom-600 font-semibold' : isCompleted ? 'text-green-600' : 'text-white'
                   )}
                 >
                   {step.label}
@@ -71,7 +71,7 @@ export function ProgressBar() {
         <p className="text-sm font-semibold text-orange-custom-600">
           Passo {currentStep} de {steps.length}
         </p>
-        <p className="text-xs text-gray-600">
+        <p className="text-xs text-gray-300">
           {steps[currentStep - 1].label}
         </p>
       </div>

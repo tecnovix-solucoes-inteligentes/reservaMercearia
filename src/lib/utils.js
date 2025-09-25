@@ -106,9 +106,11 @@ export const timeSlots = [
 ]
 
 export const locationOptions = [
-  { value: 'proximo_palco', label: 'Próximo ao Palco' },
-  { value: 'proximo_play', label: 'Próximo ao Play' },
-  { value: 'area_externa', label: 'Área Externa' },
+  { value: 'proximo_play_salao', label: 'Próximo ao play (salão)' },
+  { value: 'proximo_palco_salao', label: 'Próximo ao palco (salão)' },
+  { value: 'deck_lateral_fundo', label: 'Deck lateral (fundo)' },
+  { value: 'deck_lateral_palco', label: 'Deck lateral (próximo ao palco)' },
+  { value: 'area_externa_frente', label: 'Área externa (frente)' },
 ]
 
 export const reservationTypes = [
@@ -135,4 +137,15 @@ export function getLocationLabel(location) {
 export function getMenuTypeLabel(type) {
   const found = menuTypes.find(m => m.value === type)
   return found ? found.label : type
+}
+
+// Locais que permitem reserva de painel
+export const panelAllowedLocations = [
+  'deck_lateral_fundo',
+  'deck_lateral_palco', 
+  'area_externa_frente'
+]
+
+export function isPanelAllowedLocation(location) {
+  return panelAllowedLocations.includes(location)
 }

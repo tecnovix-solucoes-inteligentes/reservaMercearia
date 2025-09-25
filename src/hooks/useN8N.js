@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react'
 import { checkPanelAvailability, submitReservation } from '../lib/api'
+import { isPanelAllowedLocation } from '../lib/utils'
 import useReservationStore from '../store/reservationStore'
 
 export function useN8N() {
@@ -15,24 +16,31 @@ export function useN8N() {
     setSubmitSuccess,
   } = useReservationStore()
 
-  const checkPanelAvailabilityHandler = useCallback(async (date, quantidadePessoas = 0) => {
+  const checkPanelAvailabilityHandler = useCallback(async (date, quantidadePessoas = 0, localDesejado = '') => {
     setCheckingPanelAvailability(true)
     setPanelAvailabilityError(null)
 
     try {
       const result = await checkPanelAvailability(date)
       
-      // Validação adicional: painel só disponível para 10+ pessoas
-      const isAvailable = result.available && quantidadePessoas >= 10
+      // Validação adicional: painel só disponível para 10+ pessoas e locais permitidos
+      const isAvailable = result.available && quantidadePessoas >= 10 && isPanelAllowedLocation(localDesejado)
+      
+      let message = result.message
+      if (!isAvailable) {
+        if (quantidadePessoas < 10) {
+          message = 'Painel disponível apenas para reservas com 10 ou mais pessoas'
+        } else if (!isPanelAllowedLocation(localDesejado)) {
+          message = 'Painel disponível apenas para: Deck lateral (fundo), Deck lateral (próximo ao palco) ou Área externa (frente)'
+        } else {
+          message = result.message
+        }
+      }
       
       const finalResult = {
         ...result,
         available: isAvailable,
-        message: isAvailable 
-          ? result.message 
-          : quantidadePessoas < 10 
-            ? 'Painel disponível apenas para reservas com 10 ou mais pessoas'
-            : result.message
+        message: message
       }
       
       setPanelAvailability(finalResult)

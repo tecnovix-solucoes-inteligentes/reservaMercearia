@@ -101,9 +101,12 @@ export function StepReservationDetails() {
       const now = new Date()
       const today = new Date()
       today.setHours(0, 0, 0, 0)
+      
+      // Normalize date to local timezone for comparison
+      const localDate = new Date(date.getFullYear(), date.getMonth(), date.getDate())
 
       // Check if date is in the past
-      if (date < today) {
+      if (localDate < today) {
         setDateAvailable(false)
         setAvailabilityMessage('Não é possível fazer reservas para datas passadas')
         setAvailableTimeSlots([])
@@ -111,7 +114,7 @@ export function StepReservationDetails() {
       }
 
       // Check if it's same day reservation after 6:00 PM
-      if (date.getTime() === today.getTime() && now.getHours() >= 18) {
+      if (localDate.getTime() === today.getTime() && now.getHours() >= 18) {
         setDateAvailable(false)
         setAvailabilityMessage('As reservas para hoje já foram encerradas')
         setAvailableTimeSlots([])

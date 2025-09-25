@@ -7,7 +7,7 @@
   --card-foreground: 222.2 84% 4.9%;
   --popover: 0 0% 100%;
   --popover-foreground: 222.2 84% 4.9%;
-  --primary: 222.2 47.4% 11.2%;
+  --primary: 33 100% 52%;
   --primary-foreground: 210 40% 98%;
   --secondary: 210 40% 96.1%;
   --secondary-foreground: 222.2 47.4% 11.2%;
@@ -21,6 +21,15 @@
   --input: 214.3 31.8% 91.4%;
   --ring: 222.2 84% 4.9%;
   --radius: 0.5rem;
+  /* Cores personalizadas para substituir azul */
+  --custom-orange: 33 100% 52%;
+  --custom-orange-50: 33 100% 97%;
+  --custom-orange-100: 33 100% 90%;
+  --custom-orange-200: 33 100% 85%;
+  --custom-orange-500: 33 100% 52%;
+  --custom-orange-600: 33 100% 45%;
+  --custom-orange-700: 33 100% 38%;
+  --custom-orange-800: 33 100% 32%;
 }
 
 .dark {
@@ -30,7 +39,7 @@
   --card-foreground: 210 40% 98%;
   --popover: 222.2 84% 4.9%;
   --popover-foreground: 210 40% 98%;
-  --primary: 210 40% 98%;
+  --primary: 33 100% 52%;
   --primary-foreground: 222.2 47.4% 11.2%;
   --secondary: 217.2 32.6% 17.5%;
   --secondary-foreground: 210 40% 98%;
@@ -50,6 +59,146 @@
 }
 
 body {
-  background-color: hsl(var(--background));
+  background-color: #1a1a1a; /* Fallback para cor escura */
+  background-image: url('/assets/background-merc-form-min.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: hsl(var(--foreground));
+}
+
+/* Forçar cor laranja #EE9C1E para elementos de input */
+input[type="radio"]:checked {
+  accent-color: #EE9C1E;
+}
+
+input[type="checkbox"]:checked {
+  accent-color: #EE9C1E;
+}
+
+input[type="radio"]:focus {
+  accent-color: #EE9C1E;
+}
+
+input[type="checkbox"]:focus {
+  accent-color: #EE9C1E;
+}
+
+/* Classes customizadas para cor #EE9C1E */
+.bg-orange-custom-600 {
+  background-color: #EE9C1E !important;
+}
+
+.text-orange-custom-600 {
+  color: #EE9C1E !important;
+}
+
+.border-orange-custom-200 {
+  border-color: #FED7AA !important;
+}
+
+.ring-orange-custom-500 {
+  --tw-ring-color: #EE9C1E !important;
+}
+
+.hover\:bg-orange-custom-700:hover {
+  background-color: #D97706 !important;
+}
+
+.hover\:text-orange-custom-700:hover {
+  color: #D97706 !important;
+}
+
+.from-orange-custom-600 {
+  --tw-gradient-from: #EE9C1E !important;
+}
+
+.from-orange-custom-50 {
+  --tw-gradient-from: #FEF7ED !important;
+}
+
+.shadow-orange-custom-200 {
+  --tw-shadow-color: #FED7AA !important;
+}
+
+.bg-orange-custom-100 {
+  background-color: #FED7AA !important;
+}
+
+.text-orange-custom-800 {
+  color: #B45309 !important;
+}
+
+.border-orange-custom-200 {
+  border-color: #FED7AA !important;
+}
+
+.active\:bg-orange-custom-800:active {
+  background-color: #B45309 !important;
+}
+
+/* Estilos globais para inputs - FORÇAR fundo branco e texto escuro */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="number"],
+input[type="password"],
+textarea,
+select {
+  background-color: #ffffff !important; /* Fundo branco */
+  color: #1f2937 !important; /* Texto preto escuro */
+  border-color: #262D34 !important; /* Borda cor personalizada */
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="tel"]::placeholder,
+input[type="date"]::placeholder,
+input[type="number"]::placeholder,
+input[type="password"]::placeholder,
+textarea::placeholder {
+  color: #6b7280 !important; /* Placeholder cinza médio */
+}
+
+/* Forçar estilos nos componentes Tailwind */
+.flex.h-10.w-full.rounded-md {
+  background-color: #ffffff !important;
+  color: #1f2937 !important;
+  border-color: #262D34 !important;
+}
+
+.flex.min-h-\[80px\].w-full.rounded-md {
+  background-color: #ffffff !important;
+  color: #1f2937 !important;
+  border-color: #262D34 !important;
+}
+
+/* Forçar fundo branco em TODOS os inputs */
+input, textarea, select {
+  background-color: #ffffff !important;
+  color: #1f2937 !important;
+  border-color: #262D34 !important;
+}
+
+/* Garantir que placeholders sejam visíveis */
+input::placeholder, textarea::placeholder {
+  color: #6b7280 !important;
+  opacity: 1 !important;
+}
+
+/* Forçar bordas #262D34 em TODOS os elementos */
+.border-custom {
+  border-color: #262D34 !important;
+}
+
+/* Forçar bordas específicas para o card principal */
+.rounded-2xl.border {
+  border-color: #262D34 !important;
+}
+
+/* Forçar bordas em inputs */
+input, textarea, select {
+  border-color: #262D34 !important;
 }

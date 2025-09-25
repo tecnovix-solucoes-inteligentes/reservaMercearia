@@ -18,7 +18,7 @@ export function ProgressBar() {
         {/* Progress line - positioned between first and last step */}
         <div className="absolute top-5 left-5 right-5 h-1 bg-gray-200 rounded-full">
           <div
-            className="h-full bg-blue-600 rounded-full transition-all duration-500 ease-out"
+            className="h-full bg-orange-custom-600 rounded-full transition-all duration-500 ease-out"
             style={{
               width: `${((currentStep - 1) / (steps.length - 1)) * 100}%`,
             }}
@@ -42,7 +42,7 @@ export function ProgressBar() {
                     isCompleted
                       ? 'bg-green-500 text-white shadow-green-200'
                       : isActive
-                      ? 'bg-blue-600 text-white ring-4 ring-blue-200 shadow-blue-200'
+                      ? 'bg-orange-custom-600 text-white ring-4 ring-orange-custom-200 shadow-orange-custom-200'
                       : 'bg-white border-2 border-gray-300 text-gray-400'
                   )}
                 >
@@ -55,7 +55,7 @@ export function ProgressBar() {
                 <span
                   className={cn(
                     'mt-2 text-xs font-medium text-center hidden sm:block',
-                    isActive ? 'text-blue-600 font-semibold' : isCompleted ? 'text-green-600' : 'text-gray-500'
+                    isActive ? 'text-orange-custom-600 font-semibold' : isCompleted ? 'text-green-600' : 'text-gray-500'
                   )}
                 >
                   {step.label}
@@ -68,7 +68,7 @@ export function ProgressBar() {
 
       {/* Mobile step label */}
       <div className="mt-4 text-center sm:hidden">
-        <p className="text-sm font-semibold text-blue-600">
+        <p className="text-sm font-semibold text-orange-custom-600">
           Passo {currentStep} de {steps.length}
         </p>
         <p className="text-xs text-gray-600">

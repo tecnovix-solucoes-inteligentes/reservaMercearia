@@ -21,8 +21,18 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
+          DEFAULT: "#EE9C1E",
           foreground: "hsl(var(--primary-foreground))",
+        },
+        // Cor específica #EE9C1E
+        'orange-custom': {
+          50: '#FEF7ED',
+          100: '#FED7AA',
+          200: '#FED7AA',
+          500: '#EE9C1E',
+          600: '#EE9C1E',
+          700: '#D97706',
+          800: '#B45309',
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -48,6 +58,18 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Cores personalizadas para substituir azul
+        orange: {
+          50: '#FEF7ED',
+          100: '#FED7AA',
+          200: '#FED7AA',
+          500: '#EE9C1E',
+          600: '#EE9C1E',
+          700: '#D97706',
+          800: '#B45309',
+        },
+        // Cor personalizada para bordas
+        'border-custom': '#262D34',
       },
       borderRadius: {
         lg: "var(--radius)",

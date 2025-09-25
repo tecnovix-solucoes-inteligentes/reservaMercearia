@@ -125,7 +125,7 @@ export function StepReservationType() {
                     value={type.value}
                     checked={formData.tipoReserva === type.value}
                     onChange={(e) => handleTypeChange(e.target.value)}
-                    className="h-4 w-4 border-gray-300 text-primary focus:ring-2 focus:ring-primary"
+                    className="h-4 w-4 border-gray-300 text-orange-custom-600 focus:ring-2 focus:ring-orange-custom-500"
                   />
                   <Label htmlFor={type.value} className="cursor-pointer">
                     {type.label}
@@ -137,7 +137,7 @@ export function StepReservationType() {
 
           {/* Conditional fields for Aniversário */}
           {formData.tipoReserva === 'aniversario' && (
-            <div className="space-y-4 p-4 border rounded-lg bg-gray-50">
+            <div className="space-y-4 p-4 border border-custom rounded-lg bg-gray-800">
               <div className="flex items-center space-x-2">
                 <input
                   type="checkbox"
@@ -146,7 +146,7 @@ export function StepReservationType() {
                   onChange={(e) =>
                     updateFormData({ reservaPainel: e.target.checked })
                   }
-                  className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-2 focus:ring-primary"
+                  className="h-4 w-4 rounded border-gray-300 text-orange-custom-600 focus:ring-2 focus:ring-orange-custom-500"
                 />
                 <Label htmlFor="reservaPainel" className="cursor-pointer">
                   Reservar Painel de Aniversário
@@ -164,10 +164,10 @@ export function StepReservationType() {
                           onClick={() => fileInputRef.current?.click()}
                         >
                           <Upload className="h-10 w-10 text-gray-400 mb-2" />
-                          <p className="text-sm text-gray-600">
+                          <p className="text-sm text-gray-300">
                             Clique para enviar uma foto
                           </p>
-                          <p className="text-xs text-gray-500 mt-1">
+                          <p className="text-xs text-gray-400 mt-1">
                             JPG ou PNG, máx. 5MB
                           </p>
                         </div>
@@ -213,7 +213,7 @@ export function StepReservationType() {
                       }
                       maxLength={500}
                     />
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-gray-400">
                       {formData.orientacoesPainel.length}/500 caracteres
                     </p>
                   </div>
@@ -224,7 +224,7 @@ export function StepReservationType() {
 
           {/* Conditional fields for Confraternização */}
           {formData.tipoReserva === 'confraternizacao' && (
-            <div className="space-y-4 p-4 border rounded-lg bg-gray-50">
+            <div className="space-y-4 p-4 border border-custom rounded-lg bg-gray-800">
               <div className="space-y-2">
                 <Label>Tipo de Cardápio *</Label>
                 <div className="space-y-2">
@@ -237,7 +237,7 @@ export function StepReservationType() {
                         value={menu.value}
                         checked={formData.tipoCardapio === menu.value}
                         onChange={(e) => updateFormData({ tipoCardapio: e.target.value })}
-                        className="h-4 w-4 border-gray-300 text-primary focus:ring-2 focus:ring-primary"
+                        className="h-4 w-4 border-gray-300 text-orange-custom-600 focus:ring-2 focus:ring-orange-custom-500"
                       />
                       <Label htmlFor={menu.value} className="cursor-pointer">
                         {menu.label}
@@ -260,7 +260,7 @@ export function StepReservationType() {
                   }
                   maxLength={500}
                 />
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-gray-400">
                   {formData.orientacoesCompra.length}/500 caracteres
                 </p>
               </div>

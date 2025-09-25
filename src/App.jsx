@@ -41,16 +41,17 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-8 px-4">
+    <div className="min-h-screen py-8 px-4">
       <div className="container mx-auto max-w-4xl">
         {/* Header */}
         <div className="text-center mb-10">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3">
-            Reserva Mercearia Gourmet
-          </h1>
-          <p className="text-gray-600 text-lg">
-            Complete o formulário para fazer sua reserva
-          </p>
+          <div className="flex justify-center">
+            <img 
+              src="/assets/IconSemFundo.webp" 
+              alt="Mercearia Logo" 
+              className="h-32 w-32 object-contain"
+            />
+          </div>
         </div>
 
         {/* Progress Bar */}
@@ -69,7 +70,7 @@ function App() {
               href="https://tecnovix.com.br"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 hover:text-blue-700 underline"
+              className="text-orange-custom-600 hover:text-orange-custom-700 underline"
             >
               Tecnovix
             </a>

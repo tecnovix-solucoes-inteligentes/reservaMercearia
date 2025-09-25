@@ -297,7 +297,7 @@ export function StepReservationDetails() {
                     value={type.value}
                     checked={formData.tipoReserva === type.value}
                     onChange={(e) => handleTypeChange(e.target.value)}
-                    className="h-4 w-4 border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500"
+                    className="h-4 w-4 border-gray-300 text-orange-custom-600 focus:ring-2 focus:ring-orange-custom-500"
                   />
                   <Label htmlFor={type.value} className="cursor-pointer">
                     {type.label}
@@ -309,7 +309,7 @@ export function StepReservationDetails() {
 
           {/* Conditional fields for Aniversário */}
           {formData.tipoReserva === 'aniversario' && (
-            <div className="space-y-4 p-4 border rounded-lg bg-gray-50">
+            <div className="space-y-4 p-4 border border-custom rounded-lg bg-gray-800">
               <div className="flex items-center space-x-2">
                 <input
                   type="checkbox"
@@ -318,7 +318,7 @@ export function StepReservationDetails() {
                   onChange={(e) =>
                     updateFormData({ reservaPainel: e.target.checked })
                   }
-                  className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500"
+                  className="h-4 w-4 rounded border-gray-300 text-orange-custom-600 focus:ring-2 focus:ring-orange-custom-500"
                 />
                 <Label htmlFor="reservaPainel" className="cursor-pointer">
                   Reservar Painel de Aniversário
@@ -336,10 +336,10 @@ export function StepReservationDetails() {
                           onClick={() => fileInputRef.current?.click()}
                         >
                           <Upload className="h-10 w-10 text-gray-400 mb-2" />
-                          <p className="text-sm text-gray-600">
+                          <p className="text-sm text-gray-300">
                             Clique para enviar uma foto
                           </p>
-                          <p className="text-xs text-gray-500 mt-1">
+                          <p className="text-xs text-gray-400 mt-1">
                             JPG ou PNG, máx. 5MB
                           </p>
                         </div>
@@ -385,7 +385,7 @@ export function StepReservationDetails() {
                       }
                       maxLength={500}
                     />
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-gray-400">
                       {(formData.orientacoesPainel || '').length}/500 caracteres
                     </p>
                   </div>
@@ -396,7 +396,7 @@ export function StepReservationDetails() {
 
           {/* Conditional fields for Confraternização */}
           {formData.tipoReserva === 'confraternizacao' && (
-            <div className="space-y-4 p-4 border rounded-lg bg-gray-50">
+            <div className="space-y-4 p-4 border border-custom rounded-lg bg-gray-800">
               <div className="space-y-2">
                 <Label>Tipo de Cardápio *</Label>
                 <div className="space-y-2">
@@ -409,7 +409,7 @@ export function StepReservationDetails() {
                         value={menu.value}
                         checked={formData.tipoCardapio === menu.value}
                         onChange={(e) => updateFormData({ tipoCardapio: e.target.value })}
-                        className="h-4 w-4 border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500"
+                        className="h-4 w-4 border-gray-300 text-orange-custom-600 focus:ring-2 focus:ring-orange-custom-500"
                       />
                       <Label htmlFor={menu.value} className="cursor-pointer">
                         {menu.label}
@@ -432,7 +432,7 @@ export function StepReservationDetails() {
                   }
                   maxLength={500}
                 />
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-gray-400">
                   {(formData.orientacoesCompra || '').length}/500 caracteres
                 </p>
               </div>
@@ -475,7 +475,7 @@ export function StepReservationDetails() {
                 </div>
               )}
               {watchedDate && dateAvailable && availabilityMessage && (
-                <div className="flex items-center gap-2 text-blue-600">
+                <div className="flex items-center gap-2 text-orange-custom-600">
                   <AlertCircle className="h-4 w-4" />
                   <span className="text-sm">{availabilityMessage}</span>
                 </div>
@@ -487,7 +487,7 @@ export function StepReservationDetails() {
           {formData.tipoReserva === 'aniversario' &&
             formData.reservaPainel &&
             watchedDate && (
-              <div className="p-3 rounded-lg bg-gray-50 border">
+              <div className="p-3 rounded-lg bg-gray-800 border border-custom">
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-medium">
                     Disponibilidade do Painel
@@ -525,7 +525,7 @@ export function StepReservationDetails() {
                     >
                       Remover Reserva do Painel
                     </Button>
-                    <p className="text-xs text-gray-500 text-center">
+                    <p className="text-xs text-gray-400 text-center">
                       Remova a reserva do painel para continuar com o agendamento
                     </p>
                   </div>
@@ -562,7 +562,7 @@ export function StepReservationDetails() {
                 </p>
               )}
               {!watchedDate && (
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-400">
                   Selecione a data para ver os horários disponíveis
                 </p>
               )}
@@ -597,7 +597,7 @@ export function StepReservationDetails() {
               {...register('observacoes')}
               maxLength={1000}
             />
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-gray-400">
               {watch('observacoes')?.length || 0}/1000 caracteres
             </p>
             {errors.observacoes && (

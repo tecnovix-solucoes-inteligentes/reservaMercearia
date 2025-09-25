@@ -489,7 +489,7 @@ export function StepReservationDetails() {
             watchedDate && (
               <div className="p-3 rounded-lg bg-gray-800 border border-custom">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium">
+                  <span className="text-sm font-medium text-white">
                     Disponibilidade do Painel
                   </span>
                   {checkingPanelAvailability ? (

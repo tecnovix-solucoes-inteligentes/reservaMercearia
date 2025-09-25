@@ -50,7 +50,7 @@ export function StepSummary() {
         <CardContent className="py-12">
           <div className="flex flex-col items-center justify-center space-y-4">
             <CheckCircle className="h-16 w-16 text-green-500" />
-            <h2 className="text-2xl font-bold text-center">
+            <h2 className="text-2xl font-bold text-center text-white">
               Reserva Enviada com Sucesso!
             </h2>
             <p className="text-center text-gray-300">
@@ -58,7 +58,6 @@ export function StepSummary() {
             </p>
             <Button
               onClick={() => clearFormData()}
-              variant="outline"
               className="mt-4"
             >
               Fazer Nova Reserva
@@ -82,34 +81,34 @@ export function StepSummary() {
       <CardContent className="space-y-6">
         {/* Personal Data Section */}
         <div className="space-y-3">
-          <h3 className="font-semibold text-lg">Dados Pessoais</h3>
+          <h3 className="font-semibold text-lg text-white">Dados Pessoais</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pl-4">
             <div>
               <span className="text-sm text-gray-300">Nome:</span>
-              <p className="font-medium">{formData.nome}</p>
+              <p className="font-medium text-white">{formData.nome}</p>
             </div>
             <div>
               <span className="text-sm text-gray-300">E-mail:</span>
-              <p className="font-medium">{formData.email}</p>
+              <p className="font-medium text-white">{formData.email}</p>
             </div>
             <div>
               <span className="text-sm text-gray-300">Telefone:</span>
-              <p className="font-medium">{formData.telefone}</p>
+              <p className="font-medium text-white">{formData.telefone}</p>
             </div>
             <div>
               <span className="text-sm text-gray-300">Data de Nascimento:</span>
-              <p className="font-medium">{formatDateBR(formData.dataNascimento)}</p>
+              <p className="font-medium text-white">{formatDateBR(formData.dataNascimento)}</p>
             </div>
           </div>
         </div>
 
         {/* Reservation Type Section */}
         <div className="space-y-3">
-          <h3 className="font-semibold text-lg">Tipo de Reserva</h3>
+          <h3 className="font-semibold text-lg text-white">Tipo de Reserva</h3>
           <div className="pl-4 space-y-2">
             <div>
               <span className="text-sm text-gray-300">Tipo:</span>
-              <p className="font-medium">
+              <p className="font-medium text-white">
                 {getReservationTypeLabel(formData.tipoReserva)}
               </p>
             </div>
@@ -134,7 +133,7 @@ export function StepSummary() {
                     <span className="text-sm text-gray-300">
                       Orientações do Painel:
                     </span>
-                    <p className="font-medium">{formData.orientacoesPainel}</p>
+                    <p className="font-medium text-white">{formData.orientacoesPainel}</p>
                   </div>
                 )}
               </>
@@ -144,13 +143,13 @@ export function StepSummary() {
               <>
                 <div>
                   <span className="text-sm text-gray-300">Tipo de Cardápio:</span>
-                  <p className="font-medium">
+                  <p className="font-medium text-white">
                     {getMenuTypeLabel(formData.tipoCardapio)}
                   </p>
                 </div>
                 <div>
                   <span className="text-sm text-gray-300">Orientações/Detalhes da Confraternização:</span>
-                  <p className="font-medium">{formData.orientacoesCompra}</p>
+                  <p className="font-medium text-white">{formData.orientacoesCompra}</p>
                 </div>
               </>
             )}
@@ -159,23 +158,23 @@ export function StepSummary() {
 
         {/* Reservation Details Section */}
         <div className="space-y-3">
-          <h3 className="font-semibold text-lg">Detalhes da Reserva</h3>
+          <h3 className="font-semibold text-lg text-white">Detalhes da Reserva</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pl-4">
             <div>
               <span className="text-sm text-gray-300">Data:</span>
-              <p className="font-medium">{formatDateBR(formData.dataReserva)}</p>
+              <p className="font-medium text-white">{formatDateBR(formData.dataReserva)}</p>
             </div>
             <div>
               <span className="text-sm text-gray-300">Horário:</span>
-              <p className="font-medium">{formData.horarioDesejado}</p>
+              <p className="font-medium text-white">{formData.horarioDesejado}</p>
             </div>
             <div>
               <span className="text-sm text-gray-300">Quantidade de Pessoas:</span>
-              <p className="font-medium">{formData.quantidadePessoas}</p>
+              <p className="font-medium text-white">{formData.quantidadePessoas}</p>
             </div>
             <div>
               <span className="text-sm text-gray-300">Local:</span>
-              <p className="font-medium">
+              <p className="font-medium text-white">
                 {getLocationLabel(formData.localDesejado)}
               </p>
             </div>
@@ -183,7 +182,7 @@ export function StepSummary() {
           {formData.observacoes && (
             <div className="pl-4">
               <span className="text-sm text-gray-300">Observações:</span>
-              <p className="font-medium">{formData.observacoes}</p>
+              <p className="font-medium text-white">{formData.observacoes}</p>
             </div>
           )}
         </div>

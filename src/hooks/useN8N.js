@@ -31,7 +31,7 @@ export function useN8N() {
         message: isAvailable 
           ? result.message 
           : quantidadePessoas < 10 
-            ? 'Painel disponível apenas para reservas com 10 ou mais pessoas'
+            ? 'Quantidade insuficiente (mín. 10 pessoas)'
             : result.message
       }
       

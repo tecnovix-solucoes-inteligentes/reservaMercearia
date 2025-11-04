@@ -50,7 +50,7 @@ export function StepReservationDetails() {
   } = useForm({
     resolver: zodResolver(reservationDetailsSchema),
     defaultValues: {
-      quantidadePessoas: formData.quantidadePessoas || 1,
+      quantidadePessoas: formData.quantidadePessoas || 4,
       dataReserva: formData.dataReserva || '',
       horarioDesejado: formData.horarioDesejado || '',
       localDesejado: formData.localDesejado || '',
@@ -376,11 +376,11 @@ export function StepReservationDetails() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="quantidadePessoas">Quantidade de Pessoas *</Label>
+              <Label htmlFor="quantidadePessoas">Quantidade de Pessoas (min 4) *</Label>
               <Input
                 id="quantidadePessoas"
                 type="number"
-                min="1"
+                min="4"
                 max="50"
                 {...register('quantidadePessoas', { valueAsNumber: true })}
               />

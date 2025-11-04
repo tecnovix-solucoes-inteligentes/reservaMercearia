@@ -37,7 +37,7 @@ export const reservationTypeSchema = z.discriminatedUnion('tipoReserva', [
 // Step 3: Reservation Details Schema
 export const reservationDetailsSchema = z.object({
   quantidadePessoas: z.number()
-    .min(1, 'Mínimo 1 pessoa')
+    .min(4, 'Mínimo 4 pessoas')
     .max(50, 'Máximo 50 pessoas'),
   dataReserva: z.string().refine((date) => {
     // Parse date string directly to local timezone

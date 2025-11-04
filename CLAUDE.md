@@ -88,7 +88,7 @@ Options:
 ### Step 3: Reservation Details (Detalhes da Reserva)
 ```javascript
 {
-  quantidadePessoas: number,    // Min: 1, Max: 50
+  quantidadePessoas: number,    // Min: 4, Max: 50
   dataReserva: Date,            // Cannot be past date
   horarioDesejado: string,      // Select: 11:00 to 23:00
   localDesejado: string,        // Select options below
